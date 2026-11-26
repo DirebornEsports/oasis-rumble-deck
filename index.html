@@ -696,7 +696,7 @@ td:first-child{color:var(--mute);width:34%}
  <figure class="lbf"><img id="lbimg" alt=""><figcaption><span class="tag" id="lbcap"></span><span class="lbc" id="lbc"></span></figcaption></figure>
  <button class="lbb lbn" id="lbn" type="button" aria-label="Foto berikutnya">→</button>
 </div>
-<canvas class="mfx" id="mfx" aria-hidden="true"></canvas><div class="mlab" id="mlab" aria-hidden="true"><span class="tag big" id="wl">Next</span></div>
+<canvas class="mfx" id="mfx" aria-hidden="true"></canvas>
 
 <nav class="nav" aria-label="Navigasi slide">
  <button class="arr" id="prev" aria-label="Slide sebelumnya">←</button>
@@ -744,26 +744,25 @@ const AU=(()=>{const A={on:true,started:false,ctx:null};try{if(localStorage.getI
  const first=()=>{A.start();['pointerdown','keydown','touchstart'].forEach(ev=>removeEventListener(ev,first,true))};
  ['pointerdown','keydown','touchstart'].forEach(ev=>addEventListener(ev,first,{capture:true,passive:true}));
  ui();return A})();
-const magic=(()=>{const cv=document.getElementById('mfx'),cx=cv.getContext('2d'),lab=document.getElementById('mlab');let run=null;
- const cols=['#7dffc4','#46c6d6','#ffe27a','#ffffff','#3ce5a0'];
- return (veil,label)=>{const d=Math.min(devicePixelRatio||1,2),W=cv.width=innerWidth*d,H=cv.height=innerHeight*d,X=W/2,Y=H/2,R=Math.hypot(W,H)/2;
-  if(label){wl.textContent=label;lab.classList.remove('go');void lab.offsetWidth;lab.classList.add('go')}
-  const N=veil?170:90,P=[];for(let i=0;i<N;i++){const a=Math.random()*6.283,v=(0.25+Math.random()*1.1)*R/700*d;P.push({a,r:Math.random()*20*d,v,s:(1+Math.random()*2.8)*d,c:cols[i%cols.length],sw:(Math.random()<.5?-1:1)*(0.6+Math.random()*1.6),l:0.55+Math.random()*0.45})}
-  const D=veil?1050:800,t0=performance.now();cancelAnimationFrame(run);
-  const f=now=>{const p=Math.min(1,(now-t0)/D);cx.clearRect(0,0,W,H);
-   if(veil){const a=Math.pow(Math.sin(Math.PI*Math.min(1,p*1.05)),1.4);const g=cx.createRadialGradient(X,Y,0,X,Y,R);g.addColorStop(0,`rgba(10,60,48,${a*.97})`);g.addColorStop(.55,`rgba(6,38,32,${a*.96})`);g.addColorStop(1,`rgba(3,20,17,${a*.98})`);cx.fillStyle=g;cx.fillRect(0,0,W,H)}
-   cx.globalCompositeOperation='lighter';
-   const e=1-Math.pow(1-p,3);
-   for(let k=0;k<2;k++){const rr=e*R*(veil?1.05:.7)*(1-k*.22);cx.beginPath();cx.arc(X,Y,Math.max(1,rr),0,6.283);cx.strokeStyle=k?`rgba(255,226,122,${(1-p)*.55})`:`rgba(125,255,196,${(1-p)*.8})`;cx.lineWidth=(k?6:14)*d*(1-p)+1;cx.stroke()}
-   if(veil){const ga=Math.sin(Math.PI*p);const rs=(40+60*ga)*d;const rg=cx.createRadialGradient(X,Y,0,X,Y,rs*2.4);rg.addColorStop(0,`rgba(190,255,225,${ga*.9})`);rg.addColorStop(1,'rgba(70,198,214,0)');cx.fillStyle=rg;cx.beginPath();cx.arc(X,Y,rs*2.4,0,6.283);cx.fill();
-    cx.save();cx.translate(X,Y);cx.rotate(p*2.4);cx.strokeStyle=`rgba(255,226,122,${ga*.85})`;cx.lineWidth=2*d;for(let j=0;j<6;j++){cx.rotate(1.047);cx.beginPath();cx.moveTo(rs*1.5,0);cx.lineTo(rs*1.9,-6*d);cx.lineTo(rs*2.1,0);cx.lineTo(rs*1.9,6*d);cx.closePath();cx.stroke()}cx.restore()}
-   for(const q of P){const life=p/q.l;if(life>1)continue;const rr=q.r+q.v*(now-t0)*(1-life*.35);const ang=q.a+q.sw*p;const x=X+Math.cos(ang)*rr,y=Y+Math.sin(ang)*rr;const al=Math.sin(Math.PI*life);cx.globalAlpha=al;cx.fillStyle=q.c;cx.beginPath();cx.arc(x,y,q.s*(1-life*.5),0,6.283);cx.fill();cx.globalAlpha=al*.35;cx.beginPath();cx.arc(x,y,q.s*3,0,6.283);cx.fill()}
-   cx.globalAlpha=1;cx.globalCompositeOperation='source-over';
-   if(p<1)run=requestAnimationFrame(f);else cx.clearRect(0,0,W,H)};
+const magic=(()=>{const cv=document.getElementById('mfx'),cx=cv.getContext('2d');let run=null;
+ const cols=['#9fe5ff','#ffc1e5','#f3f661','#8ff0c6','#ffffff','#d9c8ff'];
+ return (veil)=>{const d=Math.min(devicePixelRatio||1,2),W=cv.width=innerWidth*d,H=cv.height=innerHeight*d;
+  const N=veil?260:120,P=[];for(let i=0;i<N;i++){P.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.3)*.05*d,vy:-(0.03+Math.random()*.09)*d,s:(.6+Math.random()*2.2)*d,c:cols[i%cols.length],o:Math.random()*.35,l:.5+Math.random()*.5,tw:Math.random()*6.28})}
+  const D=veil?1000:850,t0=performance.now();cancelAnimationFrame(run);
+  const f=now=>{const el=Math.max(0,now-t0),p=Math.min(1,el/D);cx.clearRect(0,0,W,H);
+   if(veil){const a=Math.pow(Math.sin(Math.PI*p),1.6);const g=cx.createRadialGradient(W*.5,H*.5,0,W*.5,H*.5,Math.hypot(W,H)*.6);
+    g.addColorStop(0,`rgba(255,255,255,${a*.97})`);g.addColorStop(.45,`rgba(255,240,248,${a*.95})`);g.addColorStop(.75,`rgba(232,246,255,${a*.94})`);g.addColorStop(1,`rgba(252,253,226,${a*.93})`);
+    cx.fillStyle=g;cx.fillRect(0,0,W,H)}
+   for(const q of P){const life=(p-q.o*(1-q.l))/q.l;if(life<=0||life>=1)continue;const x=q.x+q.vx*el,y=q.y+q.vy*el;
+    const al=Math.sin(Math.PI*life)*(.65+.35*Math.sin(q.tw+el/90));
+    cx.globalAlpha=al*.35;cx.fillStyle=q.c;cx.beginPath();cx.arc(x,y,q.s*3.2,0,6.283);cx.fill();
+    cx.globalAlpha=al;cx.beginPath();cx.arc(x,y,q.s,0,6.283);cx.fill();
+    if(q.s>2*d){cx.globalAlpha=al*.8;cx.fillRect(x-q.s*2.2,y-.5*d,q.s*4.4,d);cx.fillRect(x-.5*d,y-q.s*2.2,d,q.s*4.4)}}
+   cx.globalAlpha=1;if(p<1)run=requestAnimationFrame(f);else cx.clearRect(0,0,W,H)};
   run=requestAnimationFrame(f)}})();
 /* nav */
 const deck=document.getElementById('deck');
-const dots=document.getElementById('dots'),cnt=document.getElementById('cnt'),nm=document.getElementById('nm'),seg=document.getElementById('seg'),wl=document.getElementById('wl');
+const dots=document.getElementById('dots'),cnt=document.getElementById('cnt'),nm=document.getElementById('nm'),seg=document.getElementById('seg');
 const esc=t=>t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');const pad=i=>String(i+1).padStart(2,'0');
 dots.innerHTML=slides.map((s,i)=>`<button type="button" aria-label="Halaman ${i+1}: ${esc(s.dataset.n)}" title="${esc(s.dataset.n)}" data-i="${i}">${pad(i)}<span>${esc(s.dataset.n)}</span></button>`).join('');
 const pgw=document.getElementById('pgw'),pgl=document.getElementById('pgl');
@@ -788,7 +787,7 @@ vbtn.addEventListener('click',()=>{if(vid.paused){vUser=false;vid.play().catch((
 const show=i=>{slides.forEach((s,j)=>s.classList.toggle('on',j===i));db.forEach((b,j)=>b.classList.toggle('on',j===i));sg.forEach((b,j)=>{b.classList.toggle('on',j===i);b.classList.toggle('done',j<i)});cnt.textContent=(i+1)+' / '+slides.length;nm.textContent=pad(i)+' · '+slides[i].dataset.n+' ▾';db[i]&&db[i].classList.add('seen');db[i]&&db[i].scrollIntoView&&0;if(i>0)document.body.classList.add('moved');cur=i;syncVid()};
 const go=i=>{i=Math.max(0,Math.min(slides.length-1,i));if(i===cur)return;
  if(mobile()){deck.scrollTo({left:i*deck.clientWidth,behavior:still?'auto':'smooth'});return}
- if(busy)return;AU.sfx();if(still){show(i);return}busy=true;magic(true,slides[i].dataset.n);setTimeout(()=>show(i),470);setTimeout(()=>{busy=false},1050)};
+ if(busy)return;AU.sfx();if(still){show(i);return}busy=true;magic(true);setTimeout(()=>show(i),480);setTimeout(()=>{busy=false},1000)};
 show(0);
 db.forEach(b=>b.addEventListener('click',()=>go(+b.dataset.i)));
 document.getElementById('allb').addEventListener('click',pgOpen);
