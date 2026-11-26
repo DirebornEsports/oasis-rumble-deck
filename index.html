@@ -100,10 +100,10 @@ p{margin:0}
 .rec::before{content:"";width:8px;height:8px;border-radius:50%;background:#fff;animation:blink 1.2s infinite}
 .vbtn{font:inherit;font-weight:700;font-size:14px;cursor:pointer;background:#fff;color:var(--ink);border:2.5px solid var(--ink);border-radius:999px;padding:.45em 1.1em;box-shadow:3px 3px 0 var(--ink);min-height:44px}
 .vbtn:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
-.pfs .shot,.pfi img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:0}
+.pfs .shot,.pfi img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;z-index:0}
+.pfs,.pfi{background:#0b0b0b}
 .pfs .shot{opacity:0;transform:scale(1.04);transition:opacity .9s ease,transform 5s ease}
 .pfs .shot.act{opacity:1;transform:scale(1)}
-.pfd img{object-position:50% 70%}
 .pfi img{transition:transform .6s ease}
 @media (hover:hover){.pfi:hover img{transform:scale(1.05)}}
 .cap .tag{transition:opacity .3s}
@@ -274,13 +274,11 @@ td:first-child{color:var(--mute);width:34%}
  .phone~.fl{margin-top:16px}
  .vidc{aspect-ratio:16/10}
  .pfs{aspect-ratio:16/9}
- .pfi{aspect-ratio:16/10}
+ .pfi{aspect-ratio:16/9}
  .pfi .fl,.pfs .fl{position:absolute;margin:0}
  .pfb>.pfi:not(.pfd){grid-column:auto!important}
  .pfs .cap .tag{font-size:13px;padding:.35em .85em}
  .pfi .tag{font-size:12px;white-space:nowrap;padding:.3em .75em;box-shadow:2px 2px 0 var(--ink)}
- .pfd{aspect-ratio:auto;height:230px}
- .pfd img{object-position:50% 88%}
  .vidc .fl{position:absolute;margin:0}
  .c.gr{grid-template-columns:minmax(0,1fr)!important}
  .c.gr .cloud{justify-content:flex-start!important}
@@ -426,13 +424,14 @@ td:first-child{color:var(--mute);width:34%}
 
 <!-- 5C PORTFOLIO -->
 <section class="s" data-n="Portfolio">
- <div class="bento pfb" style="grid-template-columns:minmax(0,1.9fr) minmax(0,1fr) minmax(0,.6fr);grid-template-rows:auto minmax(0,1fr) minmax(0,1fr)">
-  <div class="pop" style="grid-column:1/4;display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap"><div><p class="kick">Portfolio produksi</p><h2 style="margin-top:10px">Sudah tayang di Direbattle Cup</h2></div><div class="cloud hide-m"><span class="tag">Live studio</span><span class="tag pk">Segmen interaktif</span><span class="tag bl">Custom overlay</span></div></div>
+ <div class="bento pfb" style="grid-template-columns:minmax(0,2fr) minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) minmax(0,1fr)">
+  <div class="pop" style="grid-column:1/3;display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap"><div><p class="kick">Portfolio produksi</p><h2 style="margin-top:10px">Sudah tayang di Direbattle Cup</h2></div><div class="cloud hide-m"><span class="tag">Live studio</span><span class="tag pk">Segmen interaktif</span><span class="tag bl">Custom overlay</span></div></div>
   <div class="c k pop pfs" role="button" tabindex="0" aria-label="Buka galeri portfolio" style="grid-column:1;grid-row:2/4;padding:0">
    <img class="shot act" src="pf-cup.jpg" data-full="pf-cup-hd.jpg" alt="Siaran Direbattle Cup Grand Final dari studio Direborn" data-cap="Direbattle Cup · Grand Final">
    <img class="shot" src="pf-tebak.jpg" data-full="pf-tebak-hd.jpg" alt="Segmen Tebak Skill dengan panelis di studio" data-cap="Segmen Tebak Skill" loading="lazy">
    <img class="shot" src="pf-makan.jpg" data-full="pf-makan-hd.jpg" alt="Panelis mencicipi kuliner di segmen Tier List Kuliner" data-cap="Segmen Tier List Kuliner Kota Bandung" loading="lazy">
    <img class="shot" src="pf-tier.jpg" data-full="pf-tier-hd.jpg" alt="Overlay hasil Kuliner Bandung Tier List" data-cap="Overlay Tier List Kuliner" loading="lazy">
+   <img class="shot" src="pf-draftfull.jpg" data-full="pf-draftfull-hd.jpg" alt="Custom draft overlay Direbattle saat Grand Final" data-cap="Custom draft overlay · Grand Final" loading="lazy">
    <span class="fl" style="top:16px;left:16px"><span class="tag sm rec">ON AIR</span></span>
    <span class="fl cap" style="left:16px;bottom:16px"><span class="tag" id="pfcap">Direbattle Cup · Grand Final</span></span>
    <span class="fl pfdots" id="pfdots" style="right:16px;bottom:24px"></span>
@@ -440,7 +439,6 @@ td:first-child{color:var(--mute);width:34%}
   </div>
   <div class="c k pop pfi" role="button" tabindex="0" style="grid-column:2;grid-row:2;padding:0"><img src="pf-quiz.jpg" data-full="pf-quiz-hd.jpg" alt="Title card segmen Quiz Kematian" loading="lazy"><span class="fl" style="left:12px;bottom:12px"><span class="tag sm">Segmen Quiz Kematian</span></span><span class="fl zm" style="right:12px;top:12px"><span class="tag sm">⤢</span></span></div>
   <div class="c k pop pfi" role="button" tabindex="0" style="grid-column:2;grid-row:3;padding:0"><img src="pf-tierlogo.jpg" data-full="pf-tierlogo-hd.jpg" alt="Title card segmen Tier List Kuliner Kota Bandung" loading="lazy"><span class="fl" style="left:12px;bottom:12px"><span class="tag sm yl">Tier List Kuliner</span></span><span class="fl zm" style="right:12px;top:12px"><span class="tag sm">⤢</span></span></div>
-  <div class="c k pop pfi pfd" style="grid-column:3;grid-row:2/4;padding:0"><img src="pf-draft.jpg" data-full="pf-draft-hd.jpg" alt="Custom draft overlay Direbattle dengan skor Grand Final" loading="lazy"><span class="fl" style="left:10px;top:12px"><span class="tag sm gn">Draft overlay</span></span><span class="fl zm" style="right:10px;bottom:12px"><span class="tag sm">⤢</span></span></div>
  </div>
 </section>
 
@@ -701,7 +699,7 @@ let tx=null;addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:
 /* lightbox */
 {const lb=document.getElementById('lb'),im=document.getElementById('lbimg'),cp=document.getElementById('lbcap'),cn=document.getElementById('lbc');
  const items=[...document.querySelectorAll('.pfs .shot'),...document.querySelectorAll('.pfi img')].map(e=>({src:e.dataset.full||e.src,cap:e.dataset.cap||e.closest('.pfi')?.querySelector('.tag')?.textContent||'',alt:e.alt}));
- items[items.length-1].cap='Custom draft overlay';items[items.length-3].cap='Segmen Quiz Kematian';items[items.length-2].cap='Tier List Kuliner Kota Bandung';
+ items[items.length-2].cap='Segmen Quiz Kematian';items[items.length-1].cap='Tier List Kuliner Kota Bandung';
  let k=0,last=null;
  const put=i=>{k=(i+items.length)%items.length;const it=items[k];im.style.animation='none';void im.offsetWidth;im.style.animation='';im.src=it.src;im.alt=it.alt;cp.textContent=it.cap;cn.textContent=(k+1)+' / '+items.length;new Image().src=items[(k+1)%items.length].src};
  const open=i=>{last=document.activeElement;lb.hidden=false;document.body.classList.add('lbo');put(i);document.getElementById('lbx').focus()};
