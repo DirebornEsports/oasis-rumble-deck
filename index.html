@@ -95,6 +95,11 @@ p{margin:0}
 .hero .bob{width:100%;height:100%;will-change:transform}
 .ic2{display:inline-block;width:64px;height:64px}
 .ic2 svg{width:100%;height:100%;filter:drop-shadow(3px 3px 0 #0b0b0b)}
+.vidc video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:0}
+.rec{background:#ff3b6b;color:#fff;display:inline-flex;align-items:center;gap:6px}
+.rec::before{content:"";width:8px;height:8px;border-radius:50%;background:#fff;animation:blink 1.2s infinite}
+.vbtn{font:inherit;font-weight:700;font-size:14px;cursor:pointer;background:#fff;color:var(--ink);border:2.5px solid var(--ink);border-radius:999px;padding:.45em 1.1em;box-shadow:3px 3px 0 var(--ink);min-height:44px}
+.vbtn:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
 /* phone */
 .phone{width:min(100%,250px);aspect-ratio:9/18.5;border-radius:38px;background:#fff;border:7px solid #e8e6e1;box-shadow:0 0 0 2px #cfcac0,0 24px 40px -18px rgba(0,0,0,.35);padding:30px 12px 12px;position:relative;display:flex;flex-direction:column;gap:8px;overflow:hidden;font-size:11px}
 .phone::before{content:"";position:absolute;top:8px;left:50%;width:74px;height:20px;border-radius:12px;background:#0b0b0b;transform:translateX(-50%)}
@@ -244,6 +249,8 @@ td:first-child{color:var(--mute);width:34%}
  .tag{white-space:normal;text-align:left}
  .cloud{gap:10px 8px}
  .phone~.fl{margin-top:16px}
+ .vidc{aspect-ratio:16/10}
+ .vidc .fl{position:absolute;margin:0}
  .c.gr{grid-template-columns:minmax(0,1fr)!important}
  .c.gr .cloud{justify-content:flex-start!important}
 }
@@ -365,6 +372,24 @@ td:first-child{color:var(--mute);width:34%}
   <div class="c half p pop"><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 20l4-1 11-11-3-3L5 16z"/><path d="M14 6l3 3"/></svg></div><h3>Creative in-house</h3><p class="mute" style="margin-top:8px">Graphic designer, video editor &amp; motion, dan social media specialist dalam satu tim.</p></div>
   <div class="c half y pop"><div class="ico"><svg viewBox="0 0 24 24"><path d="M7 3h10v5a5 5 0 0 1-10 0z"/><path d="M7 5H3c0 3 2 5 4 5M17 5h4c0 3-2 5-4 5M12 13v4M8 21h8l-1-4H9z"/></svg></div><h3>Teruji di sirkuit</h3><p class="mute" style="margin-top:8px">Tim yang sama memproduksi Direbattle Open Series 1–4, Direbattle Cup, dan Uprising.</p></div>
   <div class="c half g pop"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></div><h3>Dekat komunitas</h3><p class="mute" style="margin-top:8px">Terhubung langsung ke pemain dan penonton lewat kanal Direbattle dan IDC.</p><div class="deco heart" style="right:10%;bottom:10%;width:56px;height:50px"></div></div>
+ </div>
+</section>
+
+<!-- 5B STUDIO -->
+<section class="s" data-n="Studio">
+ <div class="bento" style="grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr)">
+  <div class="c k pop vidc" style="padding:0">
+   <video id="studio" muted loop playsinline preload="metadata" poster="studio-poster.jpg"><source src="studio.mp4" type="video/mp4"></video>
+   <span class="fl" style="top:16px;left:16px"><span class="tag sm rec">REC</span></span>
+   <button class="fl vbtn" id="vbtn" type="button" style="bottom:16px;right:16px" aria-pressed="false">Pause</button>
+  </div>
+  <div class="c y pop" style="display:flex;flex-direction:column;gap:14px">
+   <div class="deco vox" data-h="3,2,1" style="right:-8%;bottom:-6%;width:70%;height:36%"></div>
+   <p class="kick">Studio</p>
+   <h2>Diproduksi dari studio Direborn sendiri</h2>
+   <p class="lead" style="color:var(--ink)">Set lengkap untuk siaran turnamen: area PC pemain, backdrop branded, dan lounge untuk segmen panelis &amp; interview.</p>
+   <div class="cloud" style="margin-top:auto"><span class="tag">PC booth</span><span class="tag pk">Backdrop branded</span><span class="tag bl">Lounge &amp; interview set</span></div>
+  </div>
  </div>
 </section>
 
@@ -568,7 +593,7 @@ td:first-child{color:var(--mute);width:34%}
 <nav class="nav" aria-label="Navigasi slide">
  <button class="arr" id="prev" aria-label="Slide sebelumnya">←</button>
  <div class="dots" id="dots"></div>
- <span class="nm" id="nm">Cover</span><span class="cnt" id="cnt">1 / 14</span>
+ <span class="nm" id="nm">Cover</span><span class="cnt" id="cnt">1 / 15</span>
  <button class="arr" id="next" aria-label="Slide berikutnya">→</button>
 </nav>
 
@@ -601,7 +626,11 @@ const db=[...dots.children],sg=[...seg.children];
 let cur=0,busy=false;
 const mobile=()=>matchMedia('(max-width:820px)').matches;
 const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
-const show=i=>{slides.forEach((s,j)=>s.classList.toggle('on',j===i));db.forEach((b,j)=>b.classList.toggle('on',j===i));sg.forEach((b,j)=>{b.classList.toggle('on',j===i);b.classList.toggle('done',j<i)});cnt.textContent=(i+1)+' / '+slides.length;nm.textContent=slides[i].dataset.n;if(i>0)document.body.classList.add('moved');cur=i};
+const vid=document.getElementById('studio'),vbtn=document.getElementById('vbtn');let vUser=false;
+const syncVid=()=>{if(!vid)return;const on=vid.closest('.s').classList.contains('on');if(on&&!still&&!vUser){vid.play().catch(()=>{})}else vid.pause();vbtn.textContent=vid.paused?'Play':'Pause';vbtn.setAttribute('aria-pressed',vid.paused?'true':'false')};
+vbtn.addEventListener('click',()=>{if(vid.paused){vUser=false;vid.play().catch(()=>{})}else{vUser=true;vid.pause()}setTimeout(()=>{vbtn.textContent=vid.paused?'Play':'Pause'},50)});
+['play','pause'].forEach(ev=>vid.addEventListener(ev,()=>{vbtn.textContent=vid.paused?'Play':'Pause';vbtn.setAttribute('aria-pressed',vid.paused?'true':'false')}));
+const show=i=>{slides.forEach((s,j)=>s.classList.toggle('on',j===i));db.forEach((b,j)=>b.classList.toggle('on',j===i));sg.forEach((b,j)=>{b.classList.toggle('on',j===i);b.classList.toggle('done',j<i)});cnt.textContent=(i+1)+' / '+slides.length;nm.textContent=slides[i].dataset.n;if(i>0)document.body.classList.add('moved');cur=i;syncVid()};
 const go=i=>{i=Math.max(0,Math.min(slides.length-1,i));if(i===cur)return;
  if(mobile()){deck.scrollTo({left:i*deck.clientWidth,behavior:still?'auto':'smooth'});return}
  if(busy)return;if(still){show(i);return}busy=true;wl.textContent=slides[i].dataset.n;wipe.classList.remove('go');void wipe.offsetWidth;wipe.classList.add('go');setTimeout(()=>show(i),400);setTimeout(()=>{busy=false;wipe.classList.remove('go')},900)};
