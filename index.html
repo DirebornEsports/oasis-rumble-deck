@@ -734,9 +734,10 @@ const AU=(()=>{const A={on:true,started:false,ctx:null};try{if(localStorage.getI
  A.start=()=>{if(A.started||!A.on)return;const C=window.AudioContext||window.webkitAudioContext;if(!C)return;A.started=true;
   A.ctx=new C();A.ctx.resume&&A.ctx.resume();A.master=A.ctx.createGain();A.master.connect(A.ctx.destination);
   A.bg=A.ctx.createGain();A.bg.gain.value=0;A.bg.connect(A.master);
-  Promise.all([load('bgm.mp3'),load('sfx.mp3')]).then(([b,f])=>{A.fx=f;const src=A.ctx.createBufferSource();src.buffer=b;src.loop=true;src.connect(A.bg);src.start();A.src=src;
+  Promise.all([load('bgm.mp3'),load('sfx.mp3')]).then(([b,f])=>{A.fx=f;const src=A.ctx.createBufferSource();src.buffer=b;src.loop=true;src.connect(A.bg);src.start();A.src=src;A.sfx();
    const t=A.ctx.currentTime;A.bg.gain.setValueAtTime(0,t);A.bg.gain.linearRampToValueAtTime(0.03,t+1.2);A.bg.gain.linearRampToValueAtTime(0.17,t+5);ui()}).catch(()=>{A.started=false});ui()};
- A.sfx=()=>{if(!A.on||!A.ctx||!A.fx)return;const s=A.ctx.createBufferSource();s.buffer=A.fx;const g=A.ctx.createGain();g.gain.value=0.26;s.connect(g);g.connect(A.master);s.start();
+ A.once=false;
+ A.sfx=()=>{if(A.once||!A.on||!A.ctx||!A.fx)return;A.once=true;const s=A.ctx.createBufferSource();s.buffer=A.fx;const g=A.ctx.createGain();g.gain.value=0.26;s.connect(g);g.connect(A.master);s.start();
   const t=A.ctx.currentTime;A.bg.gain.cancelScheduledValues(t);A.bg.gain.setTargetAtTime(0.11,t,.08);A.bg.gain.setTargetAtTime(0.17,t+.9,.5)};
  btn.addEventListener('click',e=>{e.stopPropagation();A.on=!A.on;try{localStorage.setItem('or-sound',A.on?'on':'off')}catch(_){}
   if(A.on){if(!A.started)A.start();else{A.ctx.resume();const t=A.ctx.currentTime;A.master.gain.cancelScheduledValues(t);A.master.gain.setValueAtTime(A.master.gain.value,t);A.master.gain.linearRampToValueAtTime(1,t+1.5)}}
