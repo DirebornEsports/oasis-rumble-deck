@@ -100,6 +100,16 @@ p{margin:0}
 .rec::before{content:"";width:8px;height:8px;border-radius:50%;background:#fff;animation:blink 1.2s infinite}
 .vbtn{font:inherit;font-weight:700;font-size:14px;cursor:pointer;background:#fff;color:var(--ink);border:2.5px solid var(--ink);border-radius:999px;padding:.45em 1.1em;box-shadow:3px 3px 0 var(--ink);min-height:44px}
 .vbtn:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.pfs .shot,.pfi img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:0}
+.pfs .shot{opacity:0;transform:scale(1.04);transition:opacity .9s ease,transform 5s ease}
+.pfs .shot.act{opacity:1;transform:scale(1)}
+.pfd img{object-position:50% 70%}
+.pfi img{transition:transform .6s ease}
+@media (hover:hover){.pfi:hover img{transform:scale(1.05)}}
+.cap .tag{transition:opacity .3s}
+.pfdots{display:flex;gap:6px}
+.pfdots i{width:9px;height:9px;border-radius:999px;background:rgba(255,255,255,.55);border:1.5px solid #0b0b0b;transition:width .35s,background .35s}
+.pfdots i.on{width:26px;background:#fff}
 /* phone */
 .phone{width:min(100%,250px);aspect-ratio:9/18.5;border-radius:38px;background:#fff;border:7px solid #e8e6e1;box-shadow:0 0 0 2px #cfcac0,0 24px 40px -18px rgba(0,0,0,.35);padding:30px 12px 12px;position:relative;display:flex;flex-direction:column;gap:8px;overflow:hidden;font-size:11px}
 .phone::before{content:"";position:absolute;top:8px;left:50%;width:74px;height:20px;border-radius:12px;background:#0b0b0b;transform:translateX(-50%)}
@@ -250,6 +260,14 @@ td:first-child{color:var(--mute);width:34%}
  .cloud{gap:10px 8px}
  .phone~.fl{margin-top:16px}
  .vidc{aspect-ratio:16/10}
+ .pfs{aspect-ratio:16/9}
+ .pfi{aspect-ratio:16/10}
+ .pfi .fl,.pfs .fl{position:absolute;margin:0}
+ .pfb>.pfi:not(.pfd){grid-column:auto!important}
+ .pfs .cap .tag{font-size:13px;padding:.35em .85em}
+ .pfi .tag{font-size:12px;white-space:nowrap;padding:.3em .75em;box-shadow:2px 2px 0 var(--ink)}
+ .pfd{aspect-ratio:auto;height:230px}
+ .pfd img{object-position:50% 88%}
  .vidc .fl{position:absolute;margin:0}
  .c.gr{grid-template-columns:minmax(0,1fr)!important}
  .c.gr .cloud{justify-content:flex-start!important}
@@ -390,6 +408,25 @@ td:first-child{color:var(--mute);width:34%}
    <p class="lead" style="color:var(--ink)">Set lengkap untuk siaran turnamen: area PC pemain, backdrop branded, dan lounge untuk segmen panelis &amp; interview.</p>
    <div class="cloud" style="margin-top:auto"><span class="tag">PC booth</span><span class="tag pk">Backdrop branded</span><span class="tag bl">Lounge &amp; interview set</span></div>
   </div>
+ </div>
+</section>
+
+<!-- 5C PORTFOLIO -->
+<section class="s" data-n="Portfolio">
+ <div class="bento pfb" style="grid-template-columns:minmax(0,1.9fr) minmax(0,1fr) minmax(0,.6fr);grid-template-rows:auto minmax(0,1fr) minmax(0,1fr)">
+  <div class="pop" style="grid-column:1/4;display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap"><div><p class="kick">Portfolio produksi</p><h2 style="margin-top:10px">Sudah tayang di Direbattle Cup</h2></div><div class="cloud hide-m"><span class="tag">Live studio</span><span class="tag pk">Segmen interaktif</span><span class="tag bl">Custom overlay</span></div></div>
+  <div class="c k pop pfs" style="grid-column:1;grid-row:2/4;padding:0">
+   <img class="shot act" src="pf-cup.jpg" alt="Siaran Direbattle Cup Grand Final dari studio Direborn" data-cap="Direbattle Cup · Grand Final">
+   <img class="shot" src="pf-tebak.jpg" alt="Segmen Tebak Skill dengan panelis di studio" data-cap="Segmen Tebak Skill" loading="lazy">
+   <img class="shot" src="pf-makan.jpg" alt="Panelis mencicipi kuliner di segmen Tier List Kuliner" data-cap="Segmen Tier List Kuliner Kota Bandung" loading="lazy">
+   <img class="shot" src="pf-tier.jpg" alt="Overlay hasil Kuliner Bandung Tier List" data-cap="Overlay Tier List Kuliner" loading="lazy">
+   <span class="fl" style="top:16px;left:16px"><span class="tag sm rec">ON AIR</span></span>
+   <span class="fl cap" style="left:16px;bottom:16px"><span class="tag" id="pfcap">Direbattle Cup · Grand Final</span></span>
+   <span class="fl pfdots" id="pfdots" style="right:16px;bottom:24px"></span>
+  </div>
+  <div class="c k pop pfi" style="grid-column:2;grid-row:2;padding:0"><img src="pf-quiz.jpg" alt="Title card segmen Quiz Kematian" loading="lazy"><span class="fl" style="left:12px;bottom:12px"><span class="tag sm">Segmen Quiz Kematian</span></span></div>
+  <div class="c k pop pfi" style="grid-column:2;grid-row:3;padding:0"><img src="pf-tierlogo.jpg" alt="Title card segmen Tier List Kuliner Kota Bandung" loading="lazy"><span class="fl" style="left:12px;bottom:12px"><span class="tag sm yl">Tier List Kuliner</span></span></div>
+  <div class="c k pop pfi pfd" style="grid-column:3;grid-row:2/4;padding:0"><img src="pf-draft.jpg" alt="Custom draft overlay Direbattle dengan skor Grand Final" loading="lazy"><span class="fl" style="left:10px;top:12px"><span class="tag sm gn">Draft overlay</span></span></div>
  </div>
 </section>
 
@@ -593,7 +630,7 @@ td:first-child{color:var(--mute);width:34%}
 <nav class="nav" aria-label="Navigasi slide">
  <button class="arr" id="prev" aria-label="Slide sebelumnya">←</button>
  <div class="dots" id="dots"></div>
- <span class="nm" id="nm">Cover</span><span class="cnt" id="cnt">1 / 15</span>
+ <span class="nm" id="nm">Cover</span><span class="cnt" id="cnt">1 / 16</span>
  <button class="arr" id="next" aria-label="Slide berikutnya">→</button>
 </nav>
 
@@ -641,6 +678,9 @@ document.getElementById('next').addEventListener('click',()=>go(cur+1));
 addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();go(cur+1)}if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(cur-1)}});
 let wt=0;addEventListener('wheel',e=>{if(mobile())return;const t=e.target.closest('.c');if(t&&t.scrollHeight>t.clientHeight+4)return;if(Math.abs(e.deltaY)<8&&Math.abs(e.deltaX)<8)return;const n=Date.now();if(n-wt<1000)return;wt=n;go(cur+((e.deltaY||e.deltaX)>0?1:-1))},{passive:true});
 let tx=null;addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});addEventListener('touchend',e=>{if(tx==null||mobile())return;const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>50)go(cur+(dx<0?1:-1));tx=null},{passive:true});
+/* portfolio slideshow */
+{const box=document.querySelector('.pfs');if(box){const sh=[...box.querySelectorAll('.shot')],cap=document.getElementById('pfcap'),pd=document.getElementById('pfdots');pd.innerHTML=sh.map((_,i)=>'<i'+(i?'':' class="on"')+'></i>').join('');const ds=[...pd.children];let k=0;
+ setInterval(()=>{if(still||!box.closest('.s').classList.contains('on'))return;sh[k].classList.remove('act');ds[k].classList.remove('on');k=(k+1)%sh.length;sh[k].classList.add('act');ds[k].classList.add('on');cap.style.opacity=0;setTimeout(()=>{cap.textContent=sh[k].dataset.cap;cap.style.opacity=1},300)},3800)}}
 /* phone: swipe deck, replay pops on each slide */
 let st=null;deck.addEventListener('scroll',()=>{if(!mobile())return;clearTimeout(st);st=setTimeout(()=>{const i=Math.round(deck.scrollLeft/deck.clientWidth);if(i!==cur){slides[i].scrollTop=0;show(i)}},90)},{passive:true});
 let wasM=mobile();addEventListener('resize',()=>{const m=mobile();if(m)deck.scrollLeft=cur*deck.clientWidth;else{deck.scrollLeft=0;show(cur)}wasM=m});
