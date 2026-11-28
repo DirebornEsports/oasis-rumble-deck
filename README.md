@@ -1,6 +1,6 @@
-# Oasis Rumble — Production Offering Deck
+# Oasis Avalanche — Production Offering Deck
 
-Web deck penawaran produksi livestream untuk turnamen OASIS RUMBLE (Direbattle × IDC) dari Dire Production.
+Web deck penawaran produksi livestream untuk turnamen OASIS AVALANCHE (Direbattle × IDC) dari Dire Production.
 
 - Satu file statis: `index.html`
 - Deploy: Vercel (import repo ini, framework preset "Other", tanpa build command)
