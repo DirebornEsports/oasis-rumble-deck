@@ -2,6 +2,10 @@
 <html lang="id">
 <head>
 <meta charset="utf-8">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+<meta name="theme-color" content="#ffffff">
+<meta name="darkreader-lock">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Oasis Avalanche Offering</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,9 +19,11 @@
    COLOUR white ground, blue #31c8ff, green #3ce5a0, yellow #f3f661, pink #ffc1e5, black ink
    TYPE   Inter Tight 800 display + 500 text
    LAYOUT laptop: one full-screen slide at a time with a wipe transition, bento grid inside; phone: slides stack and cards fall to one column */
-:root{color-scheme:light;--ink:#0b0b0b;--mute:#4b4f57;--bg:#fff;--blue:#31c8ff;--green:#3ce5a0;--yellow:#f3f661;--pink:#ffc1e5;--b2:#dcf1fb;--g2:#d6f8e9;--y2:#fbfcc9;--p2:#ffe0f1;--r:28px}
+:root{color-scheme:light dark;--ink:#0b0b0b;--mute:#4b4f57;--bg:#fff;--blue:#31c8ff;--green:#3ce5a0;--yellow:#f3f661;--pink:#ffc1e5;--b2:#dcf1fb;--g2:#d6f8e9;--y2:#fbfcc9;--p2:#ffe0f1;--r:28px}
 *{box-sizing:border-box;min-width:0}
 html,body{height:100%;margin:0}
+html,body{background:#fff!important;color:#0b0b0b;forced-color-adjust:none}
+button,input,select,textarea{color-scheme:light}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{background:var(--bg);color:var(--ink);font:500 16px/1.5 "Inter Tight",system-ui,sans-serif;overflow:hidden}
 h1,h2,h3{margin:0;font-weight:800;letter-spacing:-.035em;line-height:.98;text-wrap:balance}
